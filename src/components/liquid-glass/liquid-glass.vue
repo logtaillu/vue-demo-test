@@ -3,16 +3,16 @@
   <!-- Over light effect -->
   <div :class="`liquid-glass-first ${overLight ? 'liquid-glass-overlight' : ''}`" :style="{
     ...positionStyles,
-    height: glassSize.height,
-    width: glassSize.width,
+    height: autoPx(glassSize.height),
+    width: autoPx(glassSize.width),
     borderRadius: `${cornerRadius}px`,
     transform: baseStyle.transform,
     transition: baseStyle.transition,
   }"></div>
   <div :class="`liquid-glass-second ${overLight ? 'liquid-glass-overlight' : ''}`" :style="{
     ...positionStyles,
-    height: glassSize.height,
-    width: glassSize.width,
+    height: autoPx(glassSize.height),
+    width: autoPx(glassSize.width),
     borderRadius: `${cornerRadius}px`,
     transform: baseStyle.transform,
     transition: baseStyle.transition,
@@ -28,8 +28,8 @@
   <!-- Border layer 1 - extracted from glass container -->
   <span :style="{
     ...positionStyles,
-    height: glassSize.height,
-    width: glassSize.width,
+    height: autoPx(glassSize.height),
+    width: autoPx(glassSize.width),
     borderRadius: `${cornerRadius}px`,
     transform: baseStyle.transform,
     transition: baseStyle.transition,
@@ -52,8 +52,8 @@
   <!-- Border layer 2 - duplicate with mix-blend-overlay -->
   <span :style="{
     ...positionStyles,
-    height: glassSize.height,
-    width: glassSize.width,
+    height: autoPx(glassSize.height),
+    width: autoPx(glassSize.width),
     borderRadius: `${cornerRadius}px`,
     transform: baseStyle.transform,
     transition: baseStyle.transition,
@@ -74,8 +74,8 @@
   }"></span>
     <div v-if="Boolean(onClick)" :style="{
       ...positionStyles,
-      height: glassSize.height,
-      width: glassSize.width + 1,
+      height: autoPx(glassSize.height),
+      width: autoPx(glassSize.width + 1),
       borderRadius: `${cornerRadius}px`,
       transform: baseStyle.transform,
       pointerEvents: 'none',
@@ -86,8 +86,8 @@
     }"></div>
     <div v-if="Boolean(onClick)" :style="{
       ...positionStyles,
-      height: glassSize.height,
-      width: glassSize.width + 1,
+      height: autoPx(glassSize.height),
+      width: autoPx(glassSize.width + 1),
       borderRadius: `${cornerRadius}px`,
       transform: baseStyle.transform,
       pointerEvents: 'none', transition: 'all 0.2s ease-out',
@@ -97,8 +97,8 @@
     }"></div>
     <div v-if="Boolean(onClick)" :style="{
       ...baseStyle,
-      height: glassSize.height,
-      width: glassSize.width + 1,
+      height: autoPx(glassSize.height),
+      width: autoPx(glassSize.width + 1),
       borderRadius: `${cornerRadius}px`,
       position: baseStyle.position,
       top: baseStyle.top,
@@ -113,6 +113,7 @@
 
 <script>
   import GlassContainer from './glass-container.vue'
+  import { autoPx } from './utils/liquid-utils'
   export default {
     name: 'LiquidGlass',
     components: {
@@ -305,18 +306,7 @@
     watch: {
       mouseDependencies: {
         handler () {
-          this.cleanMouseMoveEvent()
-          if (this.externalGlobalMousePos && this.externalMouseOffset) {
-            return
-          }
-          const container = this.mouseContainer || this.$refs['glassRef']
-          if (!container) {
-            return
-          }
-          container.addEventListener('mousemove', this.handleMouseMove)
-          this.cleanupMouseMove = () => {
-            container.removeEventListener('mousemove', this.handleMouseMove)
-          }
+          this.watchMouseMove()
         },
         deep: true,
         immediate: true
@@ -324,7 +314,7 @@
     },
     methods: {
       handleMouseMove (e) {
-        const container = this.mouseContainer || this.$refs['glassRef']
+        const container = this.mouseContainer || (this.$refs['glassRef'] && this.$refs['glassRef'].$el)
         if (!container) {
           return
         }
@@ -350,6 +340,21 @@
         if (this.cleanupResize) {
           this.cleanupResize()
         }
+      },
+      autoPx,
+      watchMouseMove () {
+        this.cleanMouseMoveEvent()
+        if (this.externalGlobalMousePos && this.externalMouseOffset) {
+          return
+        }
+        const container = this.mouseContainer || (this.$refs['glassRef'] && this.$refs['glassRef'].$el)
+        if (!container) {
+          return
+        }
+        container.addEventListener('mousemove', this.handleMouseMove)
+        this.cleanupMouseMove = () => {
+          container.removeEventListener('mousemove', this.handleMouseMove)
+        }
       }
     },
     mounted () {
@@ -364,6 +369,7 @@
       updateGlassSize()
       window.addEventListener('resize', updateGlassSize)
       this.cleanupResize = () => window.removeEventListener('resize', updateGlassSize)
+      this.watchMouseMove()
     },
     beforeDestroy () {
       this.cleanMouseMoveEvent()
