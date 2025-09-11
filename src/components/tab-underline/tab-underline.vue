@@ -34,7 +34,7 @@
     },
     methods: {
       onMouseEnter () {
-        console.log('enter')
+        console.log('enter', this.$slots.default[0].text)
         const box = this.$refs.drawline
         if (this.enterTween && this.enterTween.isActive()) {
           return
@@ -65,7 +65,7 @@
         this.index = (this.index + 1) % svgVariants.length
       },
       onMouseLeave () {
-        console.log('leave')
+        console.log('leave', this.$slots.default[0].text)
         const box = this.$refs.drawline
         const path = box.querySelector('path')
         if (!path) {
@@ -106,6 +106,7 @@
   position: absolute
   bottom: 0
   left: 0
+  pointer-events: none
 ::v-deep .text-draw__box-svg
   width: 100%
   height: 100%
