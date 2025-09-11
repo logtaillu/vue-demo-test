@@ -3,7 +3,7 @@
     <img src="https://picsum.photos/2000/2000" class="w-full h-96 object-cover">
     <img src="https://picsum.photos/1200/1200" class="w-full h-96 object-cover">
     <img src="https://picsum.photos/1400/1400" class="w-full h-96 object-cover">
-    <liquid-glass :onClick="handleClick" :cornerRadius="32" :displacementScale="100" :blurAmount="0.5" :elasticity="0" :containerStyle="{
+    <liquid-glass :cornerRadius="32" :displacementScale="100" :blurAmount="0.5" :elasticity="0" :containerStyle="{
       position: 'fixed',
       top: '20%',
       left: '40%'
