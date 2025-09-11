@@ -378,24 +378,18 @@
   }
 </script>
 
-<style scoped>
-  .liquid-glass-container {
-    display: inline-block;
-  }
-  .liquid-glass-first, .liquid-glass-second {
-    background: black;
-    transition: all 150ms ease-in-out;
-    pointer-events: none;
-    opacity: 0;
-  }
-  .liquid-glass-first.liquid-glass-overlight {
-    opacity: 0.2;
-  }
-  .liquid-glass-second {
-    mix-blend-mode: overlay;
-  }
-  .liquid-glass-second.liquid-glass-overlight {
-    opacity: 1;
-  }
-
+<style lang="stylus" scoped>
+  .liquid-glass-container
+    display: inline-block
+  .liquid-glass-first, .liquid-glass-second
+    background: black
+    transition: all 150ms ease-in-out
+    pointer-events: none
+    opacity: 0
+  .liquid-glass-first.liquid-glass-overlight
+    opacity: 0.2
+  .liquid-glass-second
+    mix-blend-mode: overlay
+  .liquid-glass-second.liquid-glass-overlight
+    opacity: 1
 </style>

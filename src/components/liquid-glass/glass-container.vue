@@ -130,15 +130,12 @@
     }
   }
 </script>
-<style scoped>
-  .glass-container {
-    position: relative;
-  }
-  .glass-container.is-pointer {
-    cursor: pointer;
-  }
-  .glass-sharp {
-    transition: all 150ms ease-in-out;
-    color: white;
-  }
+<style lang="stylus" scoped>
+  .glass-container
+    position: relative
+  .glass-container.is-pointer
+    cursor: pointer
+  .glass-sharp
+    transition: all 150ms ease-in-out
+    color: white
 </style>
