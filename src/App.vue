@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="bg-white">
     <el-container class="h-screen overflow-hidden">
       <el-aside width="200px">
         <el-menu :default-active="activeIndex" class="h-full" @select="(index) => { activeIndex = index }">

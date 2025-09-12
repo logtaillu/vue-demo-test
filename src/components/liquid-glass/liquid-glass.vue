@@ -386,7 +386,7 @@
     display: inline-block
     position relative
   .liquid-glass-first, .liquid-glass-second
-    background: black
+    // background: black
     transition: all 150ms ease-in-out
     pointer-events: none
     opacity: 0

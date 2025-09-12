@@ -3,12 +3,16 @@
   <div class="relative">
     <div class="absolute w-full">
       <img src="https://picsum.photos/2000/2000" class="w-full h-96 object-cover">
+      <div class="w-full text-left">
+        <h1>Hello World</h1>
+       <p class="px-10">Bacon ipsum dolor amet hamburger Bacon ipsum dolor amet hamburger <br>Bacon ipsum dolor amet hamburger Bacon ipsum dolor amet hamburger<br>Bacon ipsum dolor amet hamburger Bacon ipsum dolor amet hamburger<br>Bacon ipsum dolor amet hamburger Bacon ipsum dolor amet hamburger<br>Bacon ipsum dolor amet hamburger Bacon ipsum dolor amet hamburger<br>Bacon ipsum dolor amet hamburger Bacon ipsum dolor amet hamburger</p>
+      </div>
       <img src="https://picsum.photos/1200/1200" class="w-full h-96 object-cover">
       <img src="https://picsum.photos/1400/1400" class="w-full h-96 object-cover">
     </div>
     <div>
       <liquid-glass :cornerRadius="32" :displacementScale="100" :blurAmount="0.5" :elasticity="0" :containerStyle="{position: 'fixed', top: '60%', left: '50%'}">
-        <div class="w-72 text-white text-shadow-lg">
+        <div class="w-72 text-white" style="text-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px, rgba(0, 0, 0, 0.1) 0px 3px 2px, rgba(0, 0, 0, 0.1) 0px 4px 8px;">
           <h3 class="text-xl font-semibold mb-4">User Information</h3>
           <div class="space-y-3">
             <div class="flex items-center space-x-3">
