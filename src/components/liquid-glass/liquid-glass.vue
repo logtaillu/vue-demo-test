@@ -100,9 +100,9 @@
       height: autoPx(glassSize.height),
       width: autoPx(glassSize.width + 1),
       borderRadius: `${cornerRadius}px`,
-      position: baseStyle.position,
-      top: baseStyle.top,
-      left: baseStyle.left,
+      position: positionStyles.position,
+      top: positionStyles.top,
+      left: positionStyles.left,
       pointerEvents: 'none', transition: 'all 0.2s ease-out',
       opacity: isHovered ? 0.4 : isActive ? 0.8 : 0,
       backgroundImage: 'radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%)',
@@ -278,15 +278,18 @@
         return `translate(calc(-50% + ${this.calculateElasticTranslation().x}px), calc(-50% + ${this.calculateElasticTranslation().y}px)) ${this.isActive && Boolean(this.onClick) ? 'scale(0.96)' : this.calculateDirectionalScale()}`
       },
       baseStyle () {
+        const position = this.containerStyle.position || 'absolute'
         return {
           ...this.containerStyle,
+          position,
           transform: this.transformStyle,
-          transition: 'all ease-out 0.2s'
+          transition: 'all ease-out 0.2s',
+          ...position === 'absolute' ? { top: '50%', left: '50%' } : {}
         }
       },
       positionStyles () {
         return {
-          position: this.baseStyle.position || 'relative',
+          position: this.baseStyle.position || 'absolute',
           top: this.baseStyle.top || '50%',
           left: this.baseStyle.left || '50%'
         }
@@ -296,7 +299,7 @@
       return {
         isHovered: false,
         isActive: false,
-        glassSize: {width: 270, height: 69},
+        glassSize: {width: 0, height: 0},
         internalGlobalMousePos: {x: 0, y: 0},
         internalMouseOffset: {x: 0, y: 0},
         cleanupMouseMove: null,
@@ -381,6 +384,7 @@
 <style lang="stylus" scoped>
   .liquid-glass-container
     display: inline-block
+    position relative
   .liquid-glass-first, .liquid-glass-second
     background: black
     transition: all 150ms ease-in-out

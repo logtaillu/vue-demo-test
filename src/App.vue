@@ -2,12 +2,9 @@
   <div id="app">
     <el-container class="h-screen overflow-hidden">
       <el-aside width="200px">
-        <el-menu class="h-full" @select="(index) => { activeIndex = index }">
-          <el-menu-item index="1">
-            liquid glass
-          </el-menu-item>
-          <el-menu-item index="2">
-            underline tabs
+        <el-menu :default-active="activeIndex" class="h-full" @select="(index) => { activeIndex = index }">
+          <el-menu-item v-for="(component, idx) in componentMap" v-bind:key="component.name" :index="idx.toString()">
+            {{ component.name }}
           </el-menu-item>
         </el-menu>
       </el-aside>
@@ -23,16 +20,13 @@
   import UnderlineTabs from './demos/underline-tabs.vue'
   export default {
     name: 'App',
-    components: {
-      LiquidGlassDemo
-    },
     data () {
       return {
-        activeIndex: '2',
-        componentMap: {
-          1: LiquidGlassDemo,
-          2: UnderlineTabs
-        }
+        activeIndex: '0',
+        componentMap: [
+          UnderlineTabs,
+          LiquidGlassDemo
+        ]
       }
     },
     methods: {
