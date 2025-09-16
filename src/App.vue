@@ -18,14 +18,16 @@
 <script>
   import LiquidGlassDemo from './demos/liquid-glass-demo.vue'
   import UnderlineTabs from './demos/underline-tabs.vue'
+  import HeadroomDemo from './demos/headroom-demo.vue'
   export default {
     name: 'App',
     data () {
       return {
-        activeIndex: '0',
+        activeIndex: '2',
         componentMap: [
           UnderlineTabs,
-          LiquidGlassDemo
+          LiquidGlassDemo,
+          HeadroomDemo
         ]
       }
     },
