@@ -23,7 +23,7 @@
     name: 'App',
     data () {
       return {
-        activeIndex: '2',
+        activeIndex: '0',
         componentMap: [
           UnderlineTabs,
           LiquidGlassDemo,
