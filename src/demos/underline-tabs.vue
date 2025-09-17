@@ -1,12 +1,14 @@
 <template>
-  <el-tabs v-model="editableTabsValue" type="border-card" addable closable @edit="handleTabsEdit">
-    <el-tab-pane v-for="label in labels"  v-bind:key="label" :name="label">
-      <tab-underline slot="label" :nextIndex.sync="nextIndex">
-          {{label}}
-        </tab-underline>
-      {{label}}
-    </el-tab-pane>
-  </el-tabs>
+  <div class="p-5">
+    <el-tabs v-model="editableTabsValue" type="border-card" addable closable @edit="handleTabsEdit">
+      <el-tab-pane v-for="label in labels"  v-bind:key="label" :name="label">
+        <tab-underline slot="label" :nextIndex.sync="nextIndex">
+            {{label}}
+          </tab-underline>
+        {{label}}
+      </el-tab-pane>
+    </el-tabs>
+  </div>
 </template>
 <script>
   import TabUnderline from '@/components/tab-underline/tab-underline.vue'

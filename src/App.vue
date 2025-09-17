@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="bg-white">
-    <el-container class="h-screen overflow-hidden">
+    <el-container class="min-h-screen">
       <el-aside width="200px">
         <el-menu :default-active="activeIndex" class="h-full" @select="(index) => { activeIndex = index }">
           <el-menu-item v-for="(component, idx) in componentMap" v-bind:key="component.name" :index="idx.toString()">
@@ -8,7 +8,7 @@
           </el-menu-item>
         </el-menu>
       </el-aside>
-      <el-main class="overflow-hidden">
+      <el-main>
         <component :is="componentMap[activeIndex]" :key="activeIndex" />
       </el-main>
     </el-container>
@@ -18,7 +18,7 @@
 <script>
   import LiquidGlassDemo from './demos/liquid-glass-demo.vue'
   import UnderlineTabs from './demos/underline-tabs.vue'
-  import HeadroomDemo from './demos/headroom-demo.vue'
+  import ShrinkHeaderDemo from './demos/shrink-header-demo.vue'
   export default {
     name: 'App',
     data () {
@@ -27,7 +27,7 @@
         componentMap: [
           UnderlineTabs,
           LiquidGlassDemo,
-          HeadroomDemo
+          ShrinkHeaderDemo
         ]
       }
     },
@@ -43,5 +43,15 @@
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
+  }
+  .el-main{
+    padding: 0 !important;
+    margin-left: 200px;
+  }
+  .el-aside{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    padding-top: 80px;
   }
 </style>

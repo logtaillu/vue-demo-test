@@ -1,17 +1,14 @@
 <template>
   <div class="page" ref="page">
-    <height-headroom
-    :offset="offset"
-    :tolerance="tolerance"
-    :scroller="() => { return $refs.page.parentElement }"
-    >
+    <shrink-header :height="64" :shrinkHeight="40" :offset="200">
       <div class="header-inner">
         <img class="logo" src="@/assets/logo.png" alt="logo" />
         <div class="title">Headroom Padding Demo</div>
       </div>
-    </height-headroom>
+    </shrink-header>
 
     <div class="content">
+      <h1>展开高度64px,收起高度40px,滚动距离200px时开始做收缩效果</h1>
       <section v-for="i in 12" :key="i" class="block">
         <h3>Section {{ i }}</h3>
         <p>
@@ -24,18 +21,11 @@
 </template>
 
 <script>
-  import HeightHeadroom from '../components/height-headroom/height-headroom.vue'
+  import ShrinkHeader from '../components/shrink-header/shrink-header.vue'
 
   export default {
-    name: 'HeadroomDemo',
-    components: { HeightHeadroom },
-    data () {
-      return {
-        // 触发收起/展开的偏移与容差，可按需调整
-        offset: 80,
-        tolerance: 5
-      }
-    }
+    name: 'ShrinkHeaderDemo',
+    components: { ShrinkHeader }
   }
 </script>
 
@@ -50,6 +40,7 @@
   gap: 12px
   height: 100%
   background aliceblue
+  padding: 0 20px
 .logo
   width: 28px
   height: 28px

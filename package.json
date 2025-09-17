@@ -13,8 +13,7 @@
     "element-ui": "2.13.2",
     "gsap": "^3.13.0",
     "nanoid": "^5.1.5",
-    "vue": "^2.6.11",
-    "vue-headroom": "^0.10.1"
+    "vue": "^2.6.11"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.19",
